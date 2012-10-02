@@ -175,7 +175,7 @@ class Host(models.Model):
     hersteller = models.ForeignKey(Hersteller, blank=True, null=True)
     modell = models.ForeignKey(Modell, blank=True, null=True)
     sn = models.CharField(max_length=64, blank=True, null=True)
-    lieferant = models.ForeignKey(Lieferant)
+    lieferant = models.ForeignKey(Lieferant, blank=True, null=True)
     lieferdatum = models.DateField(blank=True, null=True)
     installationsdatum = models.DateField(blank=True, null=True)
     lieferschein_nr = models.CharField(max_length=32, blank=True, null=True)
