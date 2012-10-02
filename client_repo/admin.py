@@ -5,7 +5,7 @@ class HostAdmin(admin.ModelAdmin):
     list_display = ('lfd_nr', 'hostname', 'typ', 'ip', 'mac')
     search_fields = ("hostname", "ip", "mac", "users__firstname", "users__lastname", "users__username")
     filter_horizontal = ("users",)
-    list_filter = ('typ', 'physikalisch', 'os_installiert', 'modell__hersteller')
+    list_filter = ('typ', 'physikalisch', 'os_installiert', 'modell', 'hersteller')
 
 admin.site.register(models.Host, HostAdmin)
 

@@ -103,7 +103,7 @@ class Command(BaseCommand):
             geraetetyp.save()
             hersteller, created = models.Hersteller.objects.get_or_create(name=li.hersteller.strip())
             hersteller.save()
-            modell, created = models.Modell.objects.get_or_create(name=li.modell.strip(),hersteller=hersteller)
+            modell, created = models.Modell.objects.get_or_create(name=li.modell.strip())
             modell.save()
             lieferant, created = models.Lieferant.objects.get_or_create(name=li.lieferant.strip())
             lieferant.save()
@@ -142,6 +142,7 @@ class Command(BaseCommand):
             host.datensicherung = _to_bool(li.datensicherung)
             host.systemimage = _to_bool(li.systemimage)
             host.bestellnummer = li.bestell_nr
+            host.hersteller = hersteller
             host.modell = modell
             host.sn = li.sn
             host.lieferant = lieferant

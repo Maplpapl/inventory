@@ -62,7 +62,6 @@ class Standort(models.Model):
     def __unicode__(self):
         return self.name
 
-
 class Haus(models.Model):
     standort = models.ForeignKey(Standort)
     name = models.CharField(max_length=32)
@@ -88,26 +87,20 @@ class Geraetetyp(models.Model):
     def __unicode__(self):
         return self.name
 
-
 class Hersteller(models.Model):
     name = models.CharField(max_length=64, unique=True)
 
     def __unicode__(self):
         return self.name
 
-
 class Modell(models.Model):
-    hersteller = models.ForeignKey(Hersteller)
-    name = models.CharField(max_length=32)
+    name = models.CharField(max_length=64, unique=True)
 
     def __unicode__(self):
         return self.name
-    class Meta(object):
-        unique_together=('hersteller', 'name')
 
 class Lieferant(models.Model):
     name = models.CharField(max_length=64, unique=True)
-    hersteller = models.ManyToManyField(Hersteller)
 
     def __unicode__(self):
         return self.name
@@ -140,7 +133,6 @@ class User(models.Model):
 
     def host_list(self):
         return u", ".join(self.hosts.all())
-
 
 class VirtuelleUmgebung(models.Model):
     name = models.CharField(max_length=32, unique=True)
@@ -180,6 +172,7 @@ class Host(models.Model):
     datensicherung = models.BooleanField(default=False)
     systemimage = models.BooleanField(default=False)
     bestellnummer = models.CharField(max_length=64, blank=True, null=True)
+    hersteller = models.ForeignKey(Hersteller, blank=True, null=True)
     modell = models.ForeignKey(Modell, blank=True, null=True)
     sn = models.CharField(max_length=64, blank=True, null=True)
     lieferant = models.ForeignKey(Lieferant)
