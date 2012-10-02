@@ -186,6 +186,7 @@ class Host(models.Model):
     lieferdatum = models.DateField(blank=True, null=True)
     installationsdatum = models.DateField(blank=True, null=True)
     lieferschein_nr = models.CharField(max_length=32, blank=True, null=True)
+    rechnungsnummer = models.CharField(max_length=64, blank=True, null=True)
     rechnungsdatum = models.DateField(blank=True, null=True)
     kauftyp = models.CharField(max_length=1, choices=KAUFTYP_CHOICES, blank=True)
     garantie = models.ForeignKey(Warranty, blank=True, null=True)

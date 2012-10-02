@@ -148,6 +148,7 @@ class Command(BaseCommand):
             host.lieferdatum = _to_date_or_none(li.lieferdatum)
             host.installationsdatum = _to_date_or_none(li.lieferdatum)
             host.lieferschein_nr = li.lieferschein_nr
+            host.rechnungsnummer = li.rechnungsnummer
             host.rechnungsdatum = _to_date_or_none(li.rechnungsdatum)
             host.kauftyp = _to_kauftyp(li.kauftyp)
             host.garantie = warranty
