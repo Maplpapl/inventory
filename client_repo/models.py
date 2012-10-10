@@ -57,19 +57,16 @@ class Stockwerk(models.Model):
 
 
 class Standort(models.Model):
-    name = models.CharField(max_length=32, unique=True)
+    name = models.CharField(max_length=32)
 
     def __unicode__(self):
         return self.name
 
 class Haus(models.Model):
-    standort = models.ForeignKey(Standort)
     name = models.CharField(max_length=32)
 
     def __unicode__(self):
         return self.name
-    class Meta(object):
-        unique_together=('standort', 'name')
 
 class Abteilung(models.Model):
     name = models.CharField(max_length=64, unique=True)
@@ -154,7 +151,8 @@ SYSTEMBEWERTUNG_CHOICES = (
 
 class Host(models.Model):
     lfd_nr = models.IntegerField(help_text=u"Hilfetext für das Lfd Nr Feld", unique=True)
-    haus = models.ForeignKey(Haus)
+    standort = models.ForeignKey(Standort, blank=True, null=True)
+    haus = models.ForeignKey(Haus, blank=True, null=True)
     stockwerk = models.ForeignKey(Stockwerk)
     raum_nr = models.CharField(max_length=32, blank=True, null=True)
     abteilung = models.ForeignKey(Abteilung)
