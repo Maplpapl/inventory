@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
+from django.forms import model_to_dict
 
 class LegacyInventar(models.Model):
     lfd_nr = models.IntegerField(primary_key=True)
@@ -193,6 +194,19 @@ class Host(models.Model):
 
     def __unicode__(self):
         return u"{}: {}".format(self.lfd_nr, self.hostname)
+
+    def get_dict(self):
+        return model_to_dict(self)
+
+    def get_dict_first(self):
+        d = self.get_dict()
+        l = len(d)/2
+        return dict(d.items()[:l])
+
+    def get_dict_second(self):
+        d = self.get_dict()
+        l = len(d)/2
+        return dict(d.items()[l:])
 
     class Meta(object):
         ordering=('lfd_nr',)

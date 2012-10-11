@@ -1,0 +1,28 @@
+<table>
+    <thead>
+    <th>Feld</th>
+    <th>Wert</th>
+    </thead>
+    <tbody>
+    {% for label, data in host.get_dict_first.items %}
+        <tr>
+            <td>{{ label }}</td>
+            <td>{{ data }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<table>
+    <thead>
+    <th>Feld</th>
+    <th>Wert</th>
+    </thead>
+    <tbody>
+    {% for label, data in host.get_dict_second.items %}
+        <tr>
+            <td>{{ label }}</td>
+            <td>{{ data }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
