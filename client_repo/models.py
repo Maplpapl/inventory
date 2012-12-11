@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
+from concurrency.fields import IntegerVersionField
 
 class LegacyInventar(models.Model):
     lfd_nr = models.IntegerField(primary_key=True)
@@ -50,6 +51,7 @@ class LegacyInventar(models.Model):
 
 
 class Stockwerk(models.Model):
+    version = IntegerVersionField()
     name = models.CharField(max_length=16, unique=True)
 
     def __unicode__(self):
@@ -57,18 +59,21 @@ class Stockwerk(models.Model):
 
 
 class Standort(models.Model):
+    version = IntegerVersionField()
     name = models.CharField(max_length=32)
 
     def __unicode__(self):
         return self.name
 
 class Haus(models.Model):
+    version = IntegerVersionField()
     name = models.CharField(max_length=32)
 
     def __unicode__(self):
         return self.name
 
 class Abteilung(models.Model):
+    version = IntegerVersionField()
     name = models.CharField(max_length=64, unique=True)
 
     def __unicode__(self):
@@ -79,24 +84,28 @@ class Abteilung(models.Model):
 
 
 class Geraetetyp(models.Model):
+    version = IntegerVersionField()
     name = models.CharField(max_length=64, unique=True)
 
     def __unicode__(self):
         return self.name
 
 class Hersteller(models.Model):
+    version = IntegerVersionField()
     name = models.CharField(max_length=64, unique=True)
 
     def __unicode__(self):
         return self.name
 
 class Modell(models.Model):
+    version = IntegerVersionField()
     name = models.CharField(max_length=64, unique=True)
 
     def __unicode__(self):
         return self.name
 
 class Lieferant(models.Model):
+    version = IntegerVersionField()
     name = models.CharField(max_length=64, unique=True)
 
     def __unicode__(self):
@@ -104,6 +113,7 @@ class Lieferant(models.Model):
 
 
 class Os(models.Model):
+    version = IntegerVersionField()
     name = models.CharField(max_length=32, unique=True)
 
     def __unicode__(self):
@@ -111,6 +121,7 @@ class Os(models.Model):
 
 
 class Warranty(models.Model):
+    version = IntegerVersionField()
     name = models.CharField(max_length=64, unique=True)
     monate = models.IntegerField()
 
@@ -119,6 +130,7 @@ class Warranty(models.Model):
 
 
 class User(models.Model):
+    version = IntegerVersionField()
     firstname = models.CharField(max_length=32)
     lastname = models.CharField(max_length=32)
     phone = models.CharField(max_length=8, blank=True)
@@ -132,6 +144,7 @@ class User(models.Model):
         return u", ".join(self.hosts.all())
 
 class VirtuelleUmgebung(models.Model):
+    version = IntegerVersionField()
     name = models.CharField(max_length=32, unique=True)
 
     def __unicode__(self):
@@ -150,6 +163,7 @@ SYSTEMBEWERTUNG_CHOICES = (
     )
 
 class Host(models.Model):
+    version = IntegerVersionField()
     lfd_nr = models.IntegerField(help_text=u"Hilfetext für das Lfd Nr Feld", unique=True)
     standort = models.ForeignKey(Standort, blank=True, null=True)
     haus = models.ForeignKey(Haus, blank=True, null=True)
