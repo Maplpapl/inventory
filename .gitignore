@@ -1,1 +1,3 @@
 inventory/local_settings.py
+inventory/inventar.db
+*.pyc

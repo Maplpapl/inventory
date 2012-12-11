@@ -1,0 +1,4 @@
+Django==1.4.3
+South==0.7.6
+django-debug-toolbar==0.9.4
+django-concurrency==0.3.2

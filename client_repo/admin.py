@@ -7,7 +7,7 @@ class HostAdmin(admin.ModelAdmin):
     list_display = ('lfd_nr', 'hostname', 'typ', 'ip', 'mac')
     search_fields = ("hostname", "ip", "mac", "users__firstname", "users__lastname", "users__username")
     filter_horizontal = ("users",)
-    list_filter = ('typ', 'os_installiert', 'hersteller', 'haus')
+    list_filter = ('typ', 'os_installiert', 'modell__hersteller', 'haus')
 
     def get_urls(self):
         urls = super(HostAdmin, self).get_urls()
